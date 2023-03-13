@@ -55,7 +55,7 @@ const TradeLogs = ({ name }: TradeLogsProps): JSX.Element => {
   if (!error && !loading && !boardData)
     content = (
       <div className={classes.Board}>
-        <h3 className={classes.BoardHeading}>data.message</h3>
+        <h3 className={classes.BoardHeading}>{data.message}</h3>
         <div className={classes.BoardBox}></div>
         <div className={classes.TradeLogHead}>
           <span>Security</span>
