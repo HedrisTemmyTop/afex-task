@@ -1,0 +1,31 @@
+.Aside {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.AsideBar {
+  padding: 3rem;
+}
+
+.Aside img {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-block: 2rem;
+}
+.Top,
+.Bottom {
+  display: flex;
+  flex-direction: column;
+}
+.Logo {
+  margin-bottom: 4rem !important;
+}
+
+@media only screen and (max-width: 28.125em) {
+  .AsideBar {
+    display: none;
+    padding: 3rem 1rem;
+  }
+}

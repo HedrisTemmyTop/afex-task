@@ -1,0 +1,242 @@
+.Main {
+  flex: 1;
+  background-color: #fafbfc;
+  padding: 2rem;
+  position: relative;
+}
+.Path {
+  color: #86919d;
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.Icon {
+  margin-inline: 0.2rem;
+  font-size: 1.6rem;
+}
+.Market {
+  color: #e05549;
+}
+.Head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 5rem;
+}
+.Buttons {
+  display: flex;
+}
+.Head button {
+  background-color: white;
+  padding: 1rem;
+  font-weight: 600;
+  color: black;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ebedf2;
+  margin-right: 2rem;
+  flex-direction: row;
+}
+.Boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  margin-block: 4rem;
+}
+.Box {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #fff;
+  font-weight: 600;
+  color: #000;
+  border: 1px solid #ebedf2;
+  border-radius: 0.5rem;
+}
+.Cap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  align-items: center;
+}
+.CaptionName {
+  padding: 0.2rem 0.5rem;
+  color: #e05549;
+  font-weight: 600;
+  background-color: #fde3e1;
+  border-radius: 0.5rem;
+}
+.Increment {
+  color: #459850;
+  background-color: #f0faf0;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+}
+.Sell {
+  color: #e05549;
+}
+.CaptionDate {
+  color: #86919d;
+  margin-left: 1rem;
+}
+.Btns {
+  display: flex;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+.active,
+.btn {
+  margin-right: 2rem;
+  font-size: 1.4rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+
+.btn {
+  color: #86919d;
+}
+.active {
+  color: #e05549;
+  border-bottom: 1px solid #e05549;
+}
+.Quantity {
+  background-color: #efeff1;
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: black;
+  font-weight: 600;
+}
+.Boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+}
+.Board {
+  padding-block: 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  border: 1px solid #ebedf2;
+}
+.BoardHead {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  color: #86919d;
+  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 2rem;
+  border-bottom: 1px solid #efeff1;
+  border-top: 1px solid #efeff1;
+  margin-top: 2rem;
+}
+.BoardContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding: 2.2rem;
+
+  border-top: 1px solid #efeff1;
+  border-bottom: 1px solid #efeff1;
+}
+.Price {
+  color: #459850;
+  font-weight: 500;
+}
+.BoardHeading {
+  padding-left: 2rem;
+}
+.TradeLogHead {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  color: #86919d;
+  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 2rem;
+  border-bottom: 1px solid #efeff1;
+  border-top: 1px solid #efeff1;
+  margin-top: 2rem;
+}
+.TradeLogContent {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding: 2.2rem;
+
+  border-top: 1px solid #efeff1;
+  border-bottom: 1px solid #efeff1;
+}
+.BoardsContainer {
+  height: 62rem;
+  overflow-y: auto;
+  padding-block: 4rem;
+  margin-bottom: 10rem;
+}
+
+.BoardsContainer::-webkit-scrollbar {
+  display: none;
+}
+.LiveMarket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+}
+.LiveBtn {
+  padding: 3rem;
+  font-size: 1.8rem;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  min-width: 20rem;
+}
+.Marquee {
+  background-color: #fff;
+  flex: 1;
+}
+
+.MarqueeContent {
+  background-color: #fff;
+  width: 100%;
+  color: black;
+  font-size: 1.6rem;
+  display: flex;
+  font-weight: 600;
+  flex-direction: row;
+}
+
+.Marquee span {
+  margin-right: 2rem;
+}
+
+@media only screen and (max-width: 62.5em) {
+  .Boards {
+    grid-template-columns: 1fr;
+  }
+  .Boxes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 43.75em) {
+  .Boards {
+    grid-template-columns: 1fr;
+  }
+  .Boxes {
+    grid-template-columns: 1fr;
+  }
+}
