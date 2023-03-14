@@ -1,33 +1,47 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
-import { fetchBoardData } from "../../../store/slices/boards/boardSlice";
 import classes from "../../../styles/Main.module.css";
-import Loader from "../../Loader/Loader";
+import Loader from "../Loader/Loader";
 import TradeLog from "./TradeLog";
-import data from "./data";
+
+import do_decrypt from "../../../lib/encryption";
 
 interface TradeLogsProps {
   name: string;
 }
 
 const TradeLogs = ({ name }: TradeLogsProps): JSX.Element => {
-  const dispatch = useDispatch();
-  const { boardData, loading, error } = useSelector(
-    (state: any) => state.boards
-  );
+  const [loading, setLoading] = useState<boolean>(true);
+  const [trades, setTrades] = useState<null | any>(null);
+  const [error, setError] = useState<null | any>(null);
 
   useEffect(() => {
-    dispatch(fetchBoardData() as any);
-  }, [dispatch]);
+    const socket = new WebSocket("wss://comx-sand-api.afex.dev/stream/trades");
+    socket.onopen = () => {
+      setLoading(true);
+    };
+    socket.onmessage = (event) => {
+      const response = JSON.parse(event.data);
+      const data = do_decrypt(response);
 
+      setTrades(data);
+      setLoading(false);
+    };
+    socket.onclose = () => {
+      setLoading(false);
+    };
+    socket.onerror = (errorMessage) => {
+      console.log(errorMessage);
+      setError(errorMessage);
+    };
+  }, []);
   // CONDITIONAL RENDERING
   let content: JSX.Element | any = null;
   if (loading) content = <Loader />;
-  if (boardData) {
+  if (trades && !loading) {
     content = (
       <div className={classes.Board}>
-        <h3 className={classes.BoardHeading}>{boardData.message}</h3>
+        <h3 className={classes.BoardHeading}>{trades.message}</h3>
         <div className={classes.BoardBox}></div>
         <div className={classes.TradeLogHead}>
           <span>Security</span>
@@ -38,48 +52,22 @@ const TradeLogs = ({ name }: TradeLogsProps): JSX.Element => {
           <span>Date</span>
           <span>Time</span>
         </div>
-        {boardData.data.map((board: any, i: number) => (
+        {trades.messages.map((trade: any, i: number) => (
           <TradeLog
             key={i}
             index={i}
-            lastIndex={boardData.data.length - 1}
+            lastIndex={trades.messages.length - 1}
             name={name}
-            board={board}
+            trade={trade}
           />
         ))}
       </div>
     );
   }
 
-  // SUDDENLY THE REQUEST IS NOT GOING AND NOT RETURNING ERROR IT SEEMS THE SSL CERTIFICATE ON THE SERVER HAS EXPIRED
-  if (!error && !loading && !boardData)
-    content = (
-      <div className={classes.Board}>
-        <h3 className={classes.BoardHeading}>{data.message}</h3>
-        <div className={classes.BoardBox}></div>
-        <div className={classes.TradeLogHead}>
-          <span>Security</span>
-          <span>Board</span>
-          <span>Order Type</span>
-          <span>Matched Price</span>
-          <span>Quantity</span>
-          <span>Date</span>
-          <span>Time</span>
-        </div>
-        {data.data.map((board: any, i: number) => (
-          <TradeLog
-            key={i}
-            index={i}
-            lastIndex={data.data.length - 1}
-            name={name}
-            board={board}
-          />
-        ))}
-      </div>
-    );
   if (error && !loading) content = <div>Something went wrong</div>;
 
-  return content;
+  return <div>{content}</div>;
 };
 
 export default TradeLogs;

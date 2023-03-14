@@ -66,7 +66,7 @@
 .CaptionName {
   padding: 0.2rem 0.5rem;
   color: #e05549;
-  font-weight: 600;
+  font-weight: 400;
   background-color: #fde3e1;
   border-radius: 0.5rem;
 }
@@ -99,15 +99,28 @@
 
 .btn {
   color: #86919d;
+  transition: 0.2s;
+}
+.btn:hover {
+  color: black;
+}
+.btn:hover .Quantity {
+  background-color: black;
+  color: white;
 }
 .active {
   color: #e05549;
   border-bottom: 1px solid #e05549;
+  transition: 0.2s;
+}
+.active:hover {
+  color: black;
 }
 .Quantity {
   background-color: #efeff1;
   padding: 0.5rem;
   border-radius: 50%;
+  transition: 0.2s;
   color: black;
   font-weight: 600;
 }
@@ -126,6 +139,7 @@
 .BoardHead {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
   align-items: center;
   color: #86919d;
   font-weight: 500;
@@ -139,6 +153,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: space-between;
+  grid-gap: 1rem;
+
   align-items: center;
   color: #000;
   font-weight: 600;
@@ -183,7 +199,7 @@
   height: 62rem;
   overflow-y: auto;
   padding-block: 4rem;
-  margin-bottom: 10rem;
+  padding-bottom: 10rem;
 }
 
 .BoardsContainer::-webkit-scrollbar {
@@ -191,7 +207,6 @@
 }
 .LiveMarket {
   position: absolute;
-  bottom: 0;
   left: 0;
   z-index: 2;
   width: 100%;
@@ -201,6 +216,7 @@
   padding: 3rem;
   font-size: 1.8rem;
   color: #fff;
+  border: 0;
   text-align: center;
   background-color: #000;
   min-width: 20rem;
@@ -216,8 +232,9 @@
   color: black;
   font-size: 1.6rem;
   display: flex;
-  font-weight: 600;
+  font-weight: 400;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .Marquee span {

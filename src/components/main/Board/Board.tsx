@@ -5,9 +5,10 @@ interface Props {
   index: number;
   lastIndex: number;
   name: string;
+  board: any;
 }
 
-const Board: React.FC<Props> = ({ index, lastIndex, name }) => {
+const Board: React.FC<Props> = ({ index, lastIndex, name, board }) => {
   return (
     <div
       className={classes.BoardContent}
@@ -15,7 +16,7 @@ const Board: React.FC<Props> = ({ index, lastIndex, name }) => {
         index === lastIndex ? { borderBottom: 0, paddingBottom: 0 } : undefined
       }
     >
-      <span className={classes.ProductName}>Soybeans(SSBS)</span>
+      <span className={classes.ProductName}>{board.name}(board.code)</span>
       <span className={classes.ProductName}>2003</span>
       <span className={name === "Buy Board" ? classes.Price : classes.Sell}>
         6,471.49

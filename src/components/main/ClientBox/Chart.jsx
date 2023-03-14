@@ -1,12 +1,4 @@
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area } from "recharts";
 const data = [
   { name: "Jan", uv: 4000, pv: 2400, amt: 2400 },
   { name: "Feb", uv: 3000, pv: 1398, amt: 2210 },
@@ -35,7 +27,7 @@ const SimpleLineChart = ({ type }) => {
       <Area
         type="basis"
         dataKey="uv"
-        stroke="#8884d8"
+        stroke={type === "Decline" ? "#e05549" : "#459850"}
         fill={type === "Decline" ? "#fde3e1" : "#f0faf0"}
       />
     </AreaChart>

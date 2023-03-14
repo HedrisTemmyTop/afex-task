@@ -1,9 +1,18 @@
 import React from "react";
 import { BiCandles } from "react-icons/bi";
 import { HiOutlineChevronDown } from "react-icons/hi";
-import classes from "../../styles/Main.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleModal } from "../../../store/slices/ModalSlice";
+import classes from "../../../styles/Main.module.css";
 
 const Head: React.FC = () => {
+  const dispatch = useDispatch();
+  const { openModal } = useSelector((state: any) => state.modal);
+
+  const openModalHandler = () => {
+    console.log(openModal);
+    dispatch(toggleModal());
+  };
   return (
     <section className={classes.Head}>
       <span>
@@ -13,7 +22,7 @@ const Head: React.FC = () => {
         </div>
       </span>
       <span className={classes.Buttons}>
-        <button>
+        <button onClick={openModalHandler}>
           <span>Page Settings</span>
           <BiCandles />
         </button>

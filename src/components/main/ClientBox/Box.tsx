@@ -1,7 +1,7 @@
 import React from "react";
-import SimpleLineChart from "../Chart";
+import SimpleLineChart from "./Chart";
 
-import classes from "../../styles/Main.module.css";
+import classes from "../../../styles/Main.module.css";
 
 interface BoxProps {
   name: string;
@@ -14,7 +14,7 @@ const Box: React.FC<BoxProps> = ({ name, balance, type }) => {
     <div className={classes.Box}>
       <span>
         <div>{name}</div>
-        <h2>N{balance}</h2>
+        <h2>₦{balance}</h2>
         <div className={classes.Cap}>
           <span
             className={

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import do_decrypt from "../../lib/encryption";
 
 interface BoardState {
   boardData: any | null;
@@ -10,8 +11,9 @@ interface BoardState {
 const fetchBoard = async () => {
   try {
     const response = await axios.get(
-      "https://comx-sand-api.afexnigeria.com/api/security-price/live"
+      "https://comx-sand-api.afex.dev/api/securities/boards"
     );
+
     return response.data;
   } catch (error: any) {
     throw new Error(error);
@@ -23,8 +25,9 @@ export const fetchBoardData = createAsyncThunk(
   async () => {
     try {
       const response = await fetchBoard();
-      console.log(response);
-      return response;
+      const data = do_decrypt(response);
+      console.log(data);
+      return data;
     } catch (error: any) {
       throw new Error(error);
     }

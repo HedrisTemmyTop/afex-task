@@ -4,11 +4,33 @@ import classes from "../../../styles/Main.module.css";
 interface TradeLogProps {
   index: number;
   lastIndex: number;
-  board: any;
+  trade: any;
   name: string;
 }
 
-const TradeLog = ({ index, lastIndex, board, name }: TradeLogProps) => {
+const TradeLog = (props: TradeLogProps) => {
+  const { index, lastIndex, trade, name } = props;
+  const {
+    order_type,
+    security_code,
+    matched_qty,
+    order_price,
+    created,
+    board_type,
+  } = trade;
+  const matched_price = matched_qty * order_price;
+
+  // DATE
+  const dateObj: any = new Date(created);
+  const day: number = dateObj.getDate();
+  const month: string = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+  }).format(dateObj);
+  const year: number = dateObj.getFullYear();
+  const date: string = `${day}th, ${month} ${year}`;
+
+  const time: string = `${dateObj.getHours()}:${dateObj.getMinutes()}`;
+
   return (
     <div
       className={classes.TradeLogContent}
@@ -16,13 +38,13 @@ const TradeLog = ({ index, lastIndex, board, name }: TradeLogProps) => {
         index === lastIndex ? { borderBottom: 0, paddingBottom: 0 } : undefined
       }
     >
-      <span className={classes.ProductName}>{board.security_code}</span>
-      <span className={classes.ProductName}>{board.board}</span>
-      <span>Sell</span>
-      <span>{board.price}</span>
-      <span>2003</span>
-      <span>12th, Oct 2023</span>
-      <span>07:38</span>
+      <span className={classes.ProductName}>{security_code}</span>
+      <span className={classes.ProductName}>{board_type}</span>
+      <span>{order_type}</span>
+      <span>{matched_price}</span>
+      <span>{matched_qty}</span>
+      <span>{date}</span>
+      <span>{time}</span>
     </div>
   );
 };
