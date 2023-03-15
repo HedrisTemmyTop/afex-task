@@ -16,7 +16,7 @@ const TradeLogs = ({ name }: TradeLogsProps): JSX.Element => {
   const [error, setError] = useState<null | any>(null);
 
   useEffect(() => {
-    const socket = new WebSocket("wss://comx-sand-api.afex.dev/steam/trades");
+    const socket = new WebSocket("wss://comx-sand-api.afex.dev/stream/trades");
     socket.onopen = () => {
       setLoading(true);
     };
