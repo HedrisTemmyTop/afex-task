@@ -15,12 +15,10 @@ export const fetchLiveMarketData = createAsyncThunk(
       const response = await axios.get(
         "https://comx-sand-api.afex.dev/api/security-price/live"
       );
-      console.log(response);
       const data = do_decrypt(response.data.data);
-      console.log(data);
+
       return data;
     } catch (error: any) {
-      console.log(error);
       thunkAPI.rejectWithValue(error.message);
       throw new Error(error.message);
     }
@@ -43,13 +41,11 @@ const liveMarketSlice: any = createSlice({
       .addCase(
         fetchLiveMarketData.fulfilled,
         (state, action: PayloadAction<any>) => {
-          console.log(action);
           state.loading = false;
           state.market = action.payload;
         }
       )
       .addCase(fetchLiveMarketData.rejected, (state, action: any) => {
-        console.log(action.error.message);
         state.loading = false;
         state.error = action.error.message;
       });
