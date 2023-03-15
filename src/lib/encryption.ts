@@ -12,7 +12,6 @@ const do_decrypt = (data: any) => {
   });
   const { decrypt } = cipher;
 
-  console.log(decrypt(data));
   return decrypt(data);
 };
 

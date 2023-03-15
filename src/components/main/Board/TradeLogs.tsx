@@ -31,7 +31,6 @@ const TradeLogs = ({ name }: TradeLogsProps): JSX.Element => {
       setLoading(false);
     };
     socket.onerror = (errorMessage) => {
-      console.log(errorMessage);
       setError(errorMessage);
     };
   }, []);

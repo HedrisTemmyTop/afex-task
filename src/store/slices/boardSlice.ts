@@ -26,7 +26,6 @@ export const fetchBoardData = createAsyncThunk(
     try {
       const response = await fetchBoard();
       const data = do_decrypt(response);
-      console.log(data);
       return data;
     } catch (error: any) {
       thunkAPI.rejectWithValue(error.message);

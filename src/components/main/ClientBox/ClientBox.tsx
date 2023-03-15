@@ -19,7 +19,6 @@ const ClientBox: React.FC = () => {
     socket.onmessage = (event) => {
       const response = JSON.parse(event.data);
       const data = do_decrypt(response);
-      console.log(data);
       setUserData(data);
       setLoading(false);
     };
@@ -27,7 +26,6 @@ const ClientBox: React.FC = () => {
       setLoading(false);
     };
     socket.onerror = (errorMessage) => {
-      console.log(errorMessage);
       setError(errorMessage);
     };
   }, []);

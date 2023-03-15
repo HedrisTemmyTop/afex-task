@@ -10,7 +10,6 @@ const Head: React.FC = () => {
   const { openModal } = useSelector((state: any) => state.modal);
 
   const openModalHandler = () => {
-    console.log(openModal);
     dispatch(toggleModal());
   };
   return (

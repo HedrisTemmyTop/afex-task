@@ -17,7 +17,6 @@ const Boards: React.FC<Props> = ({ name }) => {
     axios
       .get("https://comx-sand-api.afex.dev/api/securities/boards")
       .then((response: any) => {
-        console.log(response);
         const data = do_decrypt(response.data);
         setboardData(data);
         setLoading(false);
