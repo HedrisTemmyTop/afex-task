@@ -7,6 +7,7 @@
 }
 .AsideBar {
   padding: 3rem;
+  border-right: 1px solid #eaebf0;
 }
 
 .Aside img {
@@ -22,7 +23,29 @@
 .Logo {
   margin-bottom: 4rem !important;
 }
+.ToolTip {
+  background-color: #000;
+  color: #fff;
 
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  z-index: 10;
+  position: absolute;
+  left: 4rem;
+  display: none;
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0px 0px 1px #ffffff, 0px 15px 35px -5px rgba(17, 24, 38, 0.35),
+    0px 5px 15px -3px rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
+}
+.Block {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.Block:hover .ToolTip {
+  display: block;
+}
 @media only screen and (max-width: 37.5em) {
   .AsideBar {
     display: none;

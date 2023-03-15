@@ -1,6 +1,11 @@
+import React from "react";
 import classes from "../../../styles/Main.module.css";
-
-const Buttons = ({ name, active, quantity }) => {
+interface ButtonsInterface {
+  name: string;
+  active: boolean;
+  quantity: string;
+}
+const Buttons: React.FC<ButtonsInterface> = ({ name, active, quantity }) => {
   return (
     <div className={active ? classes.active : classes.btn}>
       <span>{name}</span>

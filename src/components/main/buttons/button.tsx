@@ -1,8 +1,9 @@
+import React from "react";
 import Buttons from "./Buttons";
 import classes from "../../../styles/Main.module.css";
 
-const Btn = () => {
-  const buttons = [
+const Btn: React.FC = () => {
+  const buttons: [any, any, any, any, any, any] = [
     { name: "Product View" },
     { name: "Order Book", active: true },
     { name: "Price History" },
@@ -12,7 +13,7 @@ const Btn = () => {
   ];
   return (
     <section className={classes.Btns}>
-      {buttons.map((btn, i) => (
+      {buttons.map((btn: any, i: number) => (
         <Buttons
           key={i}
           name={btn.name}

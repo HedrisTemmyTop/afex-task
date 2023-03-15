@@ -22,14 +22,15 @@ const fetchBoard = async () => {
 
 export const fetchBoardData = createAsyncThunk(
   "board/fetchBoardData",
-  async () => {
+  async (_, thunkAPI) => {
     try {
       const response = await fetchBoard();
       const data = do_decrypt(response);
       console.log(data);
       return data;
     } catch (error: any) {
-      throw new Error(error);
+      thunkAPI.rejectWithValue(error.message);
+      throw new Error(error.message);
     }
   }
 );
@@ -54,9 +55,9 @@ const boardSlice = createSlice({
           state.boardData = action.payload;
         }
       )
-      .addCase(fetchBoardData.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(fetchBoardData.rejected, (state, action: any) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       });
   },
 });

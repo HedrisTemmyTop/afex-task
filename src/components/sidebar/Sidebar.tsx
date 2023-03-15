@@ -15,15 +15,35 @@ const Sidebar = (): JSX.Element => {
       <img src={logo} className={classes.Logo} alt="icon" />
       <div className={classes.Aside}>
         <div className={classes.Top}>
-          <img src={icon4} alt="icon" />
-          <img src={icon2} alt="icon" />
-          <img src={icon7} alt="icon" />
-          <img src={icon6} alt="icon" />
-          <img src={icon1} alt="icon" />
+          <div className={classes.Block}>
+            <img src={icon4} alt="icon" />
+            <span className={classes.ToolTip}> Dashboard</span>
+          </div>
+          <div className={classes.Block}>
+            <img src={icon2} alt="icon" />
+          </div>
+          <div className={classes.Block}>
+            <img src={icon7} alt="icon" />
+            <span className={classes.ToolTip}> Portfolio</span>
+          </div>
+          <div className={classes.Block}>
+            <img src={icon6} alt="icon" />
+            <span className={classes.ToolTip}> Community</span>
+          </div>
+          <div className={classes.Block}>
+            <img src={icon1} alt="icon" />
+            <span className={classes.ToolTip}> Reports</span>
+          </div>
         </div>
         <div className={classes.Bottom}>
-          <img src={icon3} alt="icon" />
-          <img src={icon5} alt="icon" />
+          <div className={classes.Block}>
+            <img src={icon3} alt="icon" />
+            <span className={classes.ToolTip}> Logout</span>
+          </div>
+          <div className={classes.Block}>
+            <img src={icon5} alt="icon" />
+            <span className={classes.ToolTip}> Settings</span>
+          </div>
         </div>
       </div>
     </aside>
