@@ -1,18 +1,27 @@
 import classes from "../../../styles/Main.module.css";
-import { useEffect, useRef } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-
-import { fetchLiveMarketData } from "../../../store/slices/LiveMarketSlice";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Loader from "../Loader/Loader";
 import ErrorComponent from "../../errorHandler";
+import do_decrypt from "../../../lib/encryption";
 const LiveMarket = () => {
-  const ref = useRef();
-  const dispatch = useDispatch();
-  const { loading, error, market } = useSelector((state) => state.market);
+  const [loading, setLoading] = useState(true);
+  const [market, setMarket] = useState(null);
+  const [error, setError] = useState(null);
+  // const { loading, error, market } = useSelector((state) => state.market);
 
   useEffect(() => {
-    dispatch(fetchLiveMarketData());
+    axios
+      .get("https://comx-sand-api.afex.dev/api/security-price/live")
+      .then((response) => {
+        const { data } = do_decrypt(response.data);
+        setMarket(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
   let content = null;
   if (loading) content = <Loader />;

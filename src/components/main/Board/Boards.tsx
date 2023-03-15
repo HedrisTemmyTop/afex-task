@@ -1,22 +1,31 @@
 import classes from "../../../styles/Main.module.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Board from "./Board";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBoardData } from "../../../store/slices/boardSlice";
 import Loader from "../Loader/Loader";
 import ErrorComponent from "../../errorHandler";
-
+import axios from "axios";
+import do_decrypt from "../../../lib/encryption";
 interface Props {
   name: string;
 }
 
 const Boards: React.FC<Props> = ({ name }) => {
-  const dispatch = useDispatch();
-  const { boardData, loading, error } = useSelector(
-    (state: any) => state.boards
-  );
+  const [loading, setLoading] = useState<boolean>(true);
+  const [boardData, setboardData] = useState<null | any>(null);
+  const [error, setError] = useState<null | any>(null);
   useEffect(() => {
-    dispatch(fetchBoardData() as any);
+    axios
+      .get("https://comx-sand-api.afex.dev/api/securities/boards")
+      .then((response: any) => {
+        console.log(response);
+        const data = do_decrypt(response.data);
+        setboardData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
   let content = null;
   if (loading) content = <Loader />;
